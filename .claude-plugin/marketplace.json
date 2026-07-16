@@ -1,0 +1,13 @@
+{
+  "name": "klaus-marketplace",
+  "owner": {
+    "name": "Mika Ruch"
+  },
+  "plugins": [
+    {
+      "name": "klaus",
+      "source": "./",
+      "description": "File-based iterative project workflow with fresh-context executor agents and sign-off gates."
+    }
+  ]
+}
