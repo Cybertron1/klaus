@@ -25,7 +25,7 @@ Argument: a description of the work ("set up e2e tooling", "fix the save-slot co
 6. **Final chat reply, code block only:**
 
    ```
-   Execute iteration <NN.x>. Read plan/iterations/<NN.x>-<slug>/PROMPT.md and plan/PLAN.md, then follow the deliverables in PROMPT.md exactly.
+   /klaus:execute <NN.x>
    ```
 
 ## Rules

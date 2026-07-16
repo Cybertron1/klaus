@@ -61,5 +61,5 @@ You'll receive a follow-up message containing "Signed off", possibly with final 
 3. Return only the kickoff command:
 
 ```
-Execute iteration <NN+1>. Read plan/iterations/<NN+1>-<next-slug>/PROMPT.md and plan/PLAN.md, then follow the deliverables in PROMPT.md exactly.
+/klaus:execute <NN+1>
 ```

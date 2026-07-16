@@ -23,10 +23,10 @@
 3. **Stop. Ask the user before writing REPORT.md and the next PROMPT.md.**
 4. After sign-off: write `plan/iterations/NN-<slug>/REPORT.md`.
 5. After sign-off: write `plan/iterations/<NN+1>-<next-slug>/PROMPT.md`.
-6. Print only the short kickoff command for the next session as the final chat reply, in a code block:
+6. Print only the kickoff command for the next session as the final chat reply, in a code block:
 
    ```
-   Execute iteration <NN+1>. Read plan/iterations/<NN+1>-<next-slug>/PROMPT.md and plan/PLAN.md, then follow the deliverables in PROMPT.md exactly.
+   /klaus:execute <NN+1>
    ```
 
 ## Constraints

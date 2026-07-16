@@ -31,7 +31,7 @@ When an iteration's implementation is done and verified: **STOP. Do not write RE
 
 > "Iteration NN looks done — acceptance criteria green, [short verification note]. Want to review before I write REPORT.md and the next PROMPT.md? Any tweaks to land first?"
 
-Only after explicit sign-off: (1) write REPORT.md, (2) write the next iteration's PROMPT.md, (3) print the kickoff command as the final chat reply, nothing else. Changes requested during sign-off are in-scope: apply, then ask again. REPORT is the *last* artefact, never the first.
+Only after explicit sign-off: (1) write REPORT.md, (2) write the next iteration's PROMPT.md, (3) print the kickoff command (`/klaus:execute <NN+1>`) as the final chat reply, nothing else. Changes requested during sign-off are in-scope: apply, then ask again. REPORT is the *last* artefact, never the first.
 
 Every iteration moves through four user-visible phases, forward only:
 

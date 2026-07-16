@@ -85,9 +85,8 @@ Numbered iterations (typical project: ~8–12). Each entry:
 - **Size** (S / M / L)
 - **Dependencies** (prior iters)
 
-Plus three template blocks at the bottom:
-- REPORT template
-- PROMPT template
+Plus these blocks at the bottom:
+- Templates for PROMPT / REPORT / CONTINUE / pivot entries ship with the klaus plugin (`skills/klaus/references/templates/`) — not duplicated here.
 - Slug map
 
 `PLAN.md` is **append-only for iteration entries**. Existing entries are not silently rewritten. If a planned iteration's scope changes, log a pivot and update the entry with a `Supersedes` reference.

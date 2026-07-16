@@ -25,14 +25,14 @@ Read `DESIGN.md`, produce `plan/PLAN.md`, get sign-off, then write `plan/iterati
 
 3. **Synthesize.** Compare drafts. Take the strongest ordering as the spine; graft better-scoped iterations from the others. Every iteration must pass the one-thing test. Note (briefly, in chat) where the drafts disagreed and what you chose.
 
-4. **Write `plan/PLAN.md`:** numbered iteration entries (template format) + three blocks at the bottom: the REPORT template, the PROMPT template (copy both from `references/templates/`), and the slug map.
+4. **Write `plan/PLAN.md`:** numbered iteration entries (template format) + the slug map at the bottom. **No template blocks in PLAN.md** — the REPORT/PROMPT/CONTINUE templates ship with the klaus plugin (`skills/klaus/references/templates/`); duplicating them in the project just drifts.
 
 5. **Stop. Ask the user to review and sign off on PLAN.md.** Apply requested changes, ask again.
 
 6. **After sign-off:** write `plan/iterations/01-<first-slug>/PROMPT.md` from the PROMPT template — seeded from PLAN.md entry 01, enriched with concrete file paths and checks where the repo already offers them. Then print, as the final chat reply, only:
 
    ```
-   Execute iteration 01. Read plan/iterations/01-<first-slug>/PROMPT.md and plan/PLAN.md, then follow the deliverables in PROMPT.md exactly.
+   /klaus:execute 01
    ```
 
 ## Rules
