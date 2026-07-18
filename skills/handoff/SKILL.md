@@ -14,7 +14,7 @@ Use when the current session shouldn't finish the iteration: too many small corr
 
 2. **Collect the remaining work.** Ask the user for their correction list if they haven't given it yet. Merge it with anything already known to be outstanding (reviewer FAILs, executor open items).
 
-3. **Write `CONTINUE.md`** (template: `skills/klaus/references/templates/CONTINUE-template.md`, dated today):
+3. **Write `CONTINUE.md`** (template: `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/CONTINUE-template.md`, dated today):
    - If an executor agent did the implementation this session → SendMessage it to write CONTINUE.md itself, passing it the correction list — its context knows best what's done and where things live.
    - Otherwise write it yourself from session state.
    - **Done so far**: completed deliverables/criteria with file paths. **Remaining**: the corrections as numbered, concrete steps — each one specific enough for a fresh context with zero chat history. **Decisions taken mid-session**: anything not yet in DESIGN/PIVOTS/PROMPT.

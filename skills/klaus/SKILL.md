@@ -5,7 +5,7 @@ description: Core rules for the klaus file-based iterative workflow. Use wheneve
 
 # klaus — core workflow rules
 
-The full contract lives in `references/WAY_OF_WORKING.md`. Read it when you need detail beyond this summary. Templates live in `references/templates/` — always copy the exact template, never paraphrase from memory.
+The full contract lives in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/WAY_OF_WORKING.md`. Read it when you need detail beyond this summary. Templates live in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/` — always copy the exact template, never paraphrase from memory.
 
 ## The shape
 
@@ -42,7 +42,7 @@ Every iteration moves through four user-visible phases, forward only:
 
 ## Pivot logging (automatic, no command)
 
-Log a `PIVOTS.md` entry (template: `references/templates/PIVOT-entry-template.md`) whenever any flow detects a meaningful design or plan change:
+Log a `PIVOTS.md` entry (template: `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/PIVOT-entry-template.md`) whenever any flow detects a meaningful design or plan change:
 
 - an iteration deviates from DESIGN.md or its PLAN.md entry,
 - an ad-hoc/inserted iteration changes design or future iterations,
@@ -61,7 +61,7 @@ Quick fixes/questions: no PROMPT/REPORT needed. But if they produce a project-af
 
 ## Session end mid-iteration
 
-If the session is ending and the iteration's PROMPT.md is not fully delivered: write/append `CONTINUE.md` (template in `references/templates/`) instead of a premature REPORT or compressed quality. Append new dated blocks; never overwrite earlier ones. Only the final session of an iteration writes REPORT.md.
+If the session is ending and the iteration's PROMPT.md is not fully delivered: write/append `CONTINUE.md` (template in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/`) instead of a premature REPORT or compressed quality. Append new dated blocks; never overwrite earlier ones. Only the final session of an iteration writes REPORT.md.
 
 ## Commands
 

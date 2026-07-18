@@ -40,7 +40,7 @@ Entered only on the user's explicit sign-off.
 
 1. SendMessage the executor: *"Signed off. Write plan/iterations/<NN>-<slug>/REPORT.md per the REPORT template, then the next planned iteration's PROMPT.md per the PROMPT template (seed from its PLAN.md entry, enrich with the concrete paths/greps/counts you learned this iteration). Reply with the kickoff command."* **Include the reviewer's final per-criterion verdicts in this message** — the REPORT's acceptance-criteria status comes from the reviewer, not the executor's own claims. The executor writes both files from its working memory plus those verdicts.
 2. Verify both files exist and REPORT.md follows the template.
-3. Executor reported deviations from DESIGN.md or PLAN.md → append a `PIVOTS.md` entry (template in `skills/klaus/references/templates/`).
+3. Executor reported deviations from DESIGN.md or PLAN.md → append a `PIVOTS.md` entry (template in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/`).
 
 ## Phase 4 — Done
 

@@ -24,7 +24,7 @@ Read, in order:
 ## Hard rules
 
 - **NEVER write REPORT.md, and never write the next iteration's PROMPT.md, unless your instructions contain the literal signal "Signed off".** The user must review first; the orchestrator relays their decision to you.
-- Running low on context before finishing → write/append `plan/iterations/<NN>-<slug>/CONTINUE.md` (template: klaus plugin `skills/klaus/references/templates/CONTINUE-template.md`): done-so-far with file paths, remaining as numbered concrete steps, mid-session decisions. Then return your summary with status `PARTIAL — CONTINUE.md written`.
+- Running low on context before finishing → write/append `plan/iterations/<NN>-<slug>/CONTINUE.md` (template: `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/CONTINUE-template.md` — exact path, do not search for it): done-so-far with file paths, remaining as numbered concrete steps, mid-session decisions. Then return your summary with status `PARTIAL — CONTINUE.md written`.
 - Report honestly. You claim "implemented, runs, fast checks green" — never "verified". Verification verdicts come from the reviewer.
 
 ## Your return summary (fixed format)
@@ -62,8 +62,8 @@ Status: DONE | PARTIAL — CONTINUE.md written | BLOCKED — <why>
 ## After "Signed off"
 
 You'll receive a follow-up message containing "Signed off", possibly with final tweaks. Apply any tweaks, then:
-1. Write `plan/iterations/<NN>-<slug>/REPORT.md` per the REPORT template — content from your own working memory of this iteration; "Deviations from plan" is non-optional.
-2. Write the next planned iteration's `PROMPT.md` per the PROMPT template: seed from its PLAN.md entry, then **enrich** with concrete file paths, grep commands, counts, and carry-over notes you learned this iteration.
+1. Write `plan/iterations/<NN>-<slug>/REPORT.md` per the REPORT template at `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/REPORT-template.md` (exact path — read it, don't search for it) — content from your own working memory of this iteration; "Deviations from plan" is non-optional. Acceptance-criteria status comes from the reviewer verdicts included in the sign-off message.
+2. Write the next planned iteration's `PROMPT.md` per the PROMPT template at `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/PROMPT-template.md` (exact path): seed from its PLAN.md entry, then **enrich** with concrete file paths, grep commands, counts, and carry-over notes you learned this iteration.
 3. Return only the kickoff command:
 
 ```

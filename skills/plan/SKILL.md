@@ -21,11 +21,11 @@ Read `DESIGN.md`, produce `plan/PLAN.md`, get sign-off, then write `plan/iterati
    - **MVP-first:** shortest path to something end-to-end and demoable, then widen.
    - **Dependency-first:** strict build-order by technical dependency, minimal rework.
 
-   Each agent gets: the full DESIGN.md text, the one-thing-done-well rule, the PLAN entry template (`skills/klaus/references/templates/PLAN-entry-template.md`), and instructions to return a numbered iteration list with goal / in scope / out of scope / acceptance criteria / size / dependencies per entry.
+   Each agent gets: the full DESIGN.md text, the one-thing-done-well rule, the PLAN entry template (`${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/PLAN-entry-template.md`), and instructions to return a numbered iteration list with goal / in scope / out of scope / acceptance criteria / size / dependencies per entry.
 
 3. **Synthesize.** Compare drafts. Take the strongest ordering as the spine; graft better-scoped iterations from the others. Every iteration must pass the one-thing test. Note (briefly, in chat) where the drafts disagreed and what you chose.
 
-4. **Write `plan/PLAN.md`:** numbered iteration entries (template format) + the slug map at the bottom. **No template blocks in PLAN.md** — the REPORT/PROMPT/CONTINUE templates ship with the klaus plugin (`skills/klaus/references/templates/`); duplicating them in the project just drifts.
+4. **Write `plan/PLAN.md`:** numbered iteration entries (template format) + the slug map at the bottom. **No template blocks in PLAN.md** — the REPORT/PROMPT/CONTINUE templates ship with the klaus plugin (`${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/`); duplicating them in the project just drifts.
 
 5. **Stop. Ask the user to review and sign off on PLAN.md.** Apply requested changes, ask again.
 

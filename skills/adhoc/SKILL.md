@@ -16,11 +16,11 @@ Argument: a description of the work ("set up e2e tooling", "fix the save-slot co
 
 2. **Enrich.** Spawn an Explore agent to gather what the PROMPT needs to be executable without this conversation: concrete file paths, grep commands and their current hit counts, relevant config. Medium breadth is usually enough.
 
-3. **Write `plan/iterations/<NN.x>-<slug>/PROMPT.md`.** Lighter than a planned one is fine (goal, scope, out of scope, done-when, deliverables incl. the sign-off stop) — but the Explore findings go in. Use the PROMPT template (`skills/klaus/references/templates/PROMPT-template.md`) as the skeleton and cut what doesn't apply.
+3. **Write `plan/iterations/<NN.x>-<slug>/PROMPT.md`.** Lighter than a planned one is fine (goal, scope, out of scope, done-when, deliverables incl. the sign-off stop) — but the Explore findings go in. Use the PROMPT template (`${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/PROMPT-template.md`) as the skeleton and cut what doesn't apply.
 
 4. **Append a PLAN.md entry** in the right slot (PLAN-entry template) so the iteration chain stays readable end-to-end.
 
-5. **Changes design or future iterations → append a `PIVOTS.md` entry** (template in `references/templates/`): why inserted, what it supersedes.
+5. **Changes design or future iterations → append a `PIVOTS.md` entry** (template in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/`): why inserted, what it supersedes.
 
 6. **Final chat reply, code block only:**
 
