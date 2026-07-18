@@ -26,7 +26,7 @@
 6. Print only the kickoff command for the next session as the final chat reply, in a code block:
 
    ```
-   /klaus:execute <NN+1>
+   /klaus:execute <NN+1>-<next-slug>
    ```
 
 ## Constraints

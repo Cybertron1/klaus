@@ -21,7 +21,7 @@ Installed once per machine; available in every project. No copying WAY_OF_WORKIN
 |---|---|
 | `/klaus:design` | Idea/brief → `DESIGN.md` + `PIVOTS.md`. Interviews you if there's no brief. |
 | `/klaus:plan` | `DESIGN.md` → `plan/PLAN.md` via parallel draft agents (risk-first / MVP-first / dependency-first). One thing per iteration, done well. Writes iter 01 PROMPT after sign-off. |
-| `/klaus:execute N` | Executor agent implements per PROMPT.md, reviewer agent adversarially re-verifies acceptance criteria, you sign off, executor seals REPORT.md + next PROMPT.md. |
+| `/klaus:execute N` | Executor agent implements per PROMPT.md (fast checks only), reviewer agent runs the full acceptance verification, you sign off, executor seals REPORT.md + next PROMPT.md. |
 | `/klaus:adhoc "desc"` | Scope inserted/ad-hoc work: `NN.x` folder, light PROMPT, PLAN entry, pivot entry. Never executes. |
 | `/klaus:handoff` | Park the iteration (e.g. correction pile-up at sign-off) → `CONTINUE.md`, resume fresh with `/klaus:execute N`. |
 | `/klaus:status` | Current iteration, remaining plan, carry-over, binding pivots. |

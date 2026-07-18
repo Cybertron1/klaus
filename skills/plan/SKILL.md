@@ -32,7 +32,7 @@ Read `DESIGN.md`, produce `plan/PLAN.md`, get sign-off, then write `plan/iterati
 6. **After sign-off:** write `plan/iterations/01-<first-slug>/PROMPT.md` from the PROMPT template — seeded from PLAN.md entry 01, enriched with concrete file paths and checks where the repo already offers them. Then print, as the final chat reply, only:
 
    ```
-   /klaus:execute 01
+   /klaus:execute 01-<first-slug>
    ```
 
 ## Rules

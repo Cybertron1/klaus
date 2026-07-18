@@ -26,7 +26,7 @@ Use when the current session shouldn't finish the iteration: too many small corr
 6. **Final chat reply, code block only:**
 
    ```
-   /klaus:execute <NN>
+   /klaus:execute <NN>-<slug>
    ```
 
    (Execute detects CONTINUE.md and resumes from "Remaining" with a fresh executor. Only the session that finishes the iteration writes REPORT.md.)

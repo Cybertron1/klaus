@@ -25,7 +25,7 @@ Argument: a description of the work ("set up e2e tooling", "fix the save-slot co
 6. **Final chat reply, code block only:**
 
    ```
-   /klaus:execute <NN.x>
+   /klaus:execute <NN.x>-<slug>
    ```
 
 ## Rules

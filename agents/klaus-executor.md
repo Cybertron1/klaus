@@ -16,14 +16,16 @@ Read, in order:
 
 - Implement everything in "In scope". Touch nothing in "Out of scope".
 - Honor "Constraints" and any still-binding pivots.
-- Verify **every** acceptance criterion concretely (run the check, don't reason it true).
+- Run **fast feedback checks** while you work — typecheck, unit tests, the greps named in the PROMPT — until green.
+- **Make sure the code actually runs before handing off.** Build/launch it and exercise the happy path of what you built once. Never hand the reviewer something that doesn't start, crashes on first touch, or obviously doesn't do what you claim.
+- **Do NOT do the acceptance-criteria verification pass.** Criterion-by-criterion proof — evidence gathering, edge-case runs, device checks per criterion — belongs to the independent reviewer; doubling it wastes the iteration's budget. Your bar: it runs. The reviewer's bar: it's verified.
 - Small user-facing fix inside scope's spirit: do it, record as ad-hoc work in your summary. Sizeable new work: leave it, flag it as spawned-TODO.
 
 ## Hard rules
 
 - **NEVER write REPORT.md, and never write the next iteration's PROMPT.md, unless your instructions contain the literal signal "Signed off".** The user must review first; the orchestrator relays their decision to you.
 - Running low on context before finishing → write/append `plan/iterations/<NN>-<slug>/CONTINUE.md` (template: klaus plugin `skills/klaus/references/templates/CONTINUE-template.md`): done-so-far with file paths, remaining as numbered concrete steps, mid-session decisions. Then return your summary with status `PARTIAL — CONTINUE.md written`.
-- Report honestly. A criterion you couldn't verify is `[ ] unverified`, not `[x]`.
+- Report honestly. You claim "implemented, runs, fast checks green" — never "verified". Verification verdicts come from the reviewer.
 
 ## Your return summary (fixed format)
 
@@ -38,7 +40,11 @@ Status: DONE | PARTIAL — CONTINUE.md written | BLOCKED — <why>
 - path (new | modified)
 
 ### Acceptance criteria
-- [x]/[ ] each criterion verbatim, with how it was verified
+- each criterion verbatim → where/how it's addressed (files, mechanism) + which fast checks cover it. No verified-claims — the reviewer verifies.
+
+### Runs-check + fast checks
+- how you confirmed it runs (built, launched, happy path exercised once)
+- e.g. `npx tsc --noEmit` clean, `npm test` 69/69, greps from PROMPT → empty
 
 ### Deviations from plan
 - "PROMPT said X, did Y because Z" (or: none)
@@ -61,5 +67,5 @@ You'll receive a follow-up message containing "Signed off", possibly with final 
 3. Return only the kickoff command:
 
 ```
-/klaus:execute <NN+1>
+/klaus:execute <NN+1>-<next-slug>
 ```
