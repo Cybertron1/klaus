@@ -337,7 +337,7 @@ If a side session balloons into something with real scope, stop and promote it t
 
 Session 1 (Design):
 - Read the brief / idea source; interview if none.
-- **UI-bearing project:** explore **≥4 distinct UX-structure directions in parallel** (one subagent each, plain HTML-only wireframes — structure/navigation/where-actions-live, not looks), wired together by a `mock/index.html` chooser. User picks one (or a blend); the winner is promoted to `mock/` root (overview `index.html` + one page per screen, linked to walk the flow). Stop, get sign-off. Skip this step for CLI/library/backend projects with no visual surface.
+- **UI-bearing project:** explore **≥4 distinct UX-structure directions in parallel** (one subagent each, static HTML wireframes on the Tailwind Play CDN — structure/navigation/where-actions-live, not looks), wired together by a `mock/index.html` chooser. All variants share the same house rules — stock Tailwind, neutral surfaces, one accent reserved for the single primary action — so the screens stay legible and only *structure* varies between them. User picks one (or a blend); the winner is promoted to `mock/` root (overview `index.html` + one page per screen, linked to walk the flow). Stop, get sign-off. Skip this step for CLI/library/backend projects with no visual surface.
 - Produce `DESIGN.md`, drafted *from the approved mock* — the interfaces/end-states sections reference the mock's screen files. The mock is a frozen origin snapshot; DESIGN.md + PIVOTS.md are the source of truth once the project moves past it.
 - Initialise empty `PIVOTS.md` with a header.
 - Stop. Ask user to review before writing PLAN.md.

@@ -11,7 +11,7 @@ The full contract lives in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/WAY_OF
 
 State lives in **files**, not chat. Each session reads only the inputs it needs and writes a small, fixed set of outputs:
 
-- `mock/` — clickable HTML-only mock of every screen (UI projects). Built in the design session, signed off before DESIGN.md; frozen origin snapshot + visual spec for the UI iterations.
+- `mock/` — clickable static-HTML mock of every screen (UI projects), Tailwind Play CDN, shared house rules. Built in the design session, signed off before DESIGN.md; frozen origin snapshot + visual spec for the UI iterations.
 - `DESIGN.md` — the spec (the "what"), drafted from the mock. Body mutable only via pivots.
 - `PIVOTS.md` — append-only, dated decision log. Newest on top. Never edit old entries; supersede them.
 - `plan/PLAN.md` — master iteration list. Append-only for iteration entries.
