@@ -10,7 +10,8 @@ How we work together on a project from zero to shipped. Drop this file at the ro
 idea / brief
    │
    ▼
-[Session 1]  Design pass         →  DESIGN.md         (the "what")
+[Session 1]  Design pass         →  mock/ (clickable HTML mock, UI projects)
+                                  →  DESIGN.md         (the "what", drafted from the mock)
    │
    ▼
 [Session 2]  Plan pass           →  plan/PLAN.md      (the "in what order")
@@ -223,6 +224,33 @@ If the user requests changes during sign-off, treat them as in-scope, apply them
 
 ---
 
+## 3.1 Acceptance tests — the verification contract
+
+Manual verification does not accumulate. Verify a criterion by hand in iteration 6 and nothing protects it in iteration 13 — the user becomes the regression suite. Executable criteria fix that.
+
+**Every acceptance criterion carries a tag, assigned when the PROMPT is scoped:**
+
+- `auto` — machine-checkable. Becomes a test in the permanent suite.
+- `manual` — genuinely not automatable. Must state **why** and give **exact re-runnable steps**.
+
+Default to `auto`. `manual` is reserved for: hardware / OS-session events (calls, audio-route changes, Siri), OS-gated human gestures, physical-device install and signing, feel/perf judgement, and aesthetics. Anything scriptable on a simulator or in CI is `auto` — launch, tap, force-quit and relaunch, toggle network, assert DB rows, assert files on disk, assert logs.
+
+**Order matters more than authorship.** `auto` tests are written *before* the implementation. A test written afterwards encodes what was built; a test written first encodes what was asked. Because the ordering does the work, the executor writes its own tests — no separate test-author agent, which would only add a cold context load and an API-contract negotiation across a boundary. Independence comes from the reviewer, which audits the tests instead of re-verifying everything by hand.
+
+**The suite accumulates.** Every iteration runs all previous iterations' tests. Regressions surface for free, and the reviewer's effort stays flat while coverage compounds.
+
+**Guards against the obvious failure mode** — an agent told "make it pass" will take the shortcut:
+
+- The executor may never weaken a test to go green (no deleted assertions, loosened comparisons, `.skip`/`.only`, mocking out the thing under test, or hardcoded expected values). If a test is genuinely wrong, it says so out loud instead of editing quietly.
+- The executor reports the **red run** — tests written, and that they failed for the right reason before implementation. A test that never failed proves nothing.
+- The reviewer audits every new test against its criterion and, where cheap, mutation-checks it: break the behavior, confirm the test goes red, revert. A green suite with a hollow test is a FAIL.
+
+**Spikes are exempt.** Discovery cannot be specified up front — forcing test-first onto a spike is waste. A `spike` iteration's output is written-down knowledge (README notes, a pivot entry); the next `feature` iteration turns that knowledge into `auto` criteria. Each PROMPT declares its kind: `feature` or `spike`.
+
+**Bootstrap the harness in iteration 01** — the test runner, any end-to-end runner, and fixtures. "Built up from the beginning" only works if the first iteration can already write a test.
+
+**What tests do not buy you.** They catch regressions and false "done" claims. They cannot catch a *wrong criterion* — a criterion faithfully implemented and faithfully tested can still be the wrong behavior, and the suite will be green about it. That is what phase 2 is for: the user using the thing. Tests protect the build; user verification protects the spec.
+
 ## 4. Ad-hoc iterations
 
 Not every piece of work fits the planned grid. Mid-session, the user may surface something that wasn't in PLAN.md — a bug, a polish pass, a design exploration, a tooling setup.
@@ -308,8 +336,9 @@ If a side session balloons into something with real scope, stop and promote it t
 ## 9. Starting a new project from this file
 
 Session 1 (Design):
-- Read the brief / idea source.
-- Produce `DESIGN.md`.
+- Read the brief / idea source; interview if none.
+- **UI-bearing project:** explore **≥4 distinct UX-structure directions in parallel** (one subagent each, plain HTML-only wireframes — structure/navigation/where-actions-live, not looks), wired together by a `mock/index.html` chooser. User picks one (or a blend); the winner is promoted to `mock/` root (overview `index.html` + one page per screen, linked to walk the flow). Stop, get sign-off. Skip this step for CLI/library/backend projects with no visual surface.
+- Produce `DESIGN.md`, drafted *from the approved mock* — the interfaces/end-states sections reference the mock's screen files. The mock is a frozen origin snapshot; DESIGN.md + PIVOTS.md are the source of truth once the project moves past it.
 - Initialise empty `PIVOTS.md` with a header.
 - Stop. Ask user to review before writing PLAN.md.
 

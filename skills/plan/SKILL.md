@@ -27,9 +27,13 @@ Read `DESIGN.md`, produce `plan/PLAN.md`, get sign-off, then write `plan/iterati
 
 4. **Write `plan/PLAN.md`:** numbered iteration entries (template format) + the slug map at the bottom. **No template blocks in PLAN.md** — the REPORT/PROMPT/CONTINUE templates ship with the klaus plugin (`${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/templates/`); duplicating them in the project just drifts.
 
+   Two things the plan must get right for the verification contract (§3.1):
+   - **Mark every iteration `feature` or `spike`.** Spikes are discovery and are exempt from test-first; features are not.
+   - **Iteration 01 bootstraps the test harness** — the test runner, any end-to-end runner, and fixtures — so iteration 01 onward can actually write tests. A suite "built from the beginning" has to start at the beginning.
+
 5. **Stop. Ask the user to review and sign off on PLAN.md.** Apply requested changes, ask again.
 
-6. **After sign-off:** write `plan/iterations/01-<first-slug>/PROMPT.md` from the PROMPT template — seeded from PLAN.md entry 01, enriched with concrete file paths and checks where the repo already offers them. Then print, as the final chat reply, only:
+6. **After sign-off:** write `plan/iterations/01-<first-slug>/PROMPT.md` from the PROMPT template — seeded from PLAN.md entry 01, enriched with concrete file paths and checks where the repo already offers them. Set its `Kind`, and tag every acceptance criterion `auto` or `manual` (§3.1). For a UI iteration, cite the matching `mock/<screen>.html` as the visual reference in "Required reading". Then print, as the final chat reply, only:
 
    ```
    /klaus:execute 01-<first-slug>

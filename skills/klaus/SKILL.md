@@ -11,7 +11,8 @@ The full contract lives in `${CLAUDE_PLUGIN_ROOT}/skills/klaus/references/WAY_OF
 
 State lives in **files**, not chat. Each session reads only the inputs it needs and writes a small, fixed set of outputs:
 
-- `DESIGN.md` — the spec (the "what"). Body mutable only via pivots.
+- `mock/` — clickable HTML-only mock of every screen (UI projects). Built in the design session, signed off before DESIGN.md; frozen origin snapshot + visual spec for the UI iterations.
+- `DESIGN.md` — the spec (the "what"), drafted from the mock. Body mutable only via pivots.
 - `PIVOTS.md` — append-only, dated decision log. Newest on top. Never edit old entries; supersede them.
 - `plan/PLAN.md` — master iteration list. Append-only for iteration entries.
 - `plan/iterations/NN-<slug>/PROMPT.md` — entry contract for one iteration.
@@ -35,10 +36,18 @@ Only after explicit sign-off: (1) write REPORT.md, (2) write the next iteration'
 
 Every iteration moves through four user-visible phases, forward only:
 
-1. **Execution** — executor implements and hands off only code that *runs* (fast checks green, happy path exercised once); adversarial reviewer does the acceptance verification, criterion by criterion. Verification happens once, by the reviewer. No user involvement.
+1. **Execution** — on a `feature` iteration the executor writes the `auto`-criterion tests **first** (reporting the red run), then implements to green and runs the full accumulated suite; it hands off only code that *runs*. The adversarial reviewer re-runs the suite, audits that the new tests genuinely encode their criteria, and hand-verifies only the `manual`-tagged criteria. Verification happens once, by the reviewer. No user involvement.
 2. **Verification** — user reviews and tests; change requests are applied in-scope, repeat freely.
 3. **Sign-off** — user approves; REPORT.md + next PROMPT.md are written (sealing).
 4. **Done** — the iteration is immutable. REPORT.md is never amended; any further change is new work → ad-hoc/inserted iteration (`NN.x`).
+
+## Acceptance tests (the verification contract)
+
+Every acceptance criterion in a PROMPT is tagged `auto` (becomes a test in the permanent suite) or `manual` (state why + exact steps). Tagging happens at scoping time, so "what is tested" is never in doubt. Default to `auto`; `manual` is only for hardware/OS-session events, OS-gated gestures, physical-device install, feel/perf, and aesthetics.
+
+`auto` tests are written **before** the implementation — that is what makes them a spec rather than a mirror of whatever got built — and they accumulate: every later iteration re-runs all of them, so regressions surface for free and the reviewer's cost stays flat while coverage grows. The executor never weakens a test to go green; the reviewer audits for exactly that.
+
+`spike` iterations are exempt — discovery can't be specified up front. Their output is written-down knowledge, which the next `feature` iteration turns into criteria.
 
 ## Pivot logging (automatic, no command)
 
@@ -65,7 +74,7 @@ If the session is ending and the iteration's PROMPT.md is not fully delivered: w
 
 ## Commands
 
-- `/klaus:design` — design pass → DESIGN.md + PIVOTS.md
+- `/klaus:design` — design pass → `mock/` (clickable HTML mock, UI projects) then DESIGN.md + PIVOTS.md
 - `/klaus:plan` — plan pass → plan/PLAN.md, then iter 01 PROMPT after sign-off
 - `/klaus:execute N` — run an iteration via executor + reviewer agents
 - `/klaus:adhoc "<desc>"` — scope an ad-hoc/inserted iteration (PROMPT only, no execution)

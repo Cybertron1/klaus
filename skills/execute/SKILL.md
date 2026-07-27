@@ -20,8 +20,8 @@ You are the **orchestrator**. You never implement — you spawn fresh contexts, 
 
 No user involvement until it's green.
 
-1. Spawn the **executor** (`klaus:klaus-executor`, foreground): iteration folder path, resume flag if applicable. It implements per PROMPT.md, keeps fast checks green (typecheck, unit tests, PROMPT greps), and confirms the code **runs** (built, launched, happy path exercised once) before returning its fixed-format summary. It does **not** do criterion-by-criterion acceptance verification and will not write REPORT.md.
-2. Spawn the **reviewer** (`klaus:klaus-reviewer`, foreground): iteration folder path + the executor's files-touched list. It is the sole verifier — runs every acceptance criterion's check itself (including live/device/end-to-end) plus scope discipline. Verification happens exactly once, here.
+1. Spawn the **executor** (`klaus:klaus-executor`, foreground): iteration folder path, resume flag if applicable. On a `feature` iteration it writes the `auto`-criterion tests **first**, reports the red run, then implements to green; on a `spike` it skips test-first and records findings. Either way it keeps fast checks green (typecheck, PROMPT greps), runs the **full accumulated suite**, and confirms the code **runs** (built, launched, happy path exercised once) before returning its fixed-format summary. It does **not** do criterion-by-criterion acceptance verification and will not write REPORT.md.
+2. Spawn the **reviewer** (`klaus:klaus-reviewer`, foreground): iteration folder path + the executor's files-touched list. It is the sole verifier: re-runs the full accumulated suite itself, **audits the new tests** (do they encode their criteria, could they fail, any weakening), and hand-verifies only the `manual`-tagged criteria. Verification happens exactly once, here.
 3. Reviewer FAILs → SendMessage the failures to the executor to fix, re-review. Still phase 1 — the user sees green or blocked, not ping-pong.
 4. Executor BLOCKED or wrote CONTINUE.md (context exhausted) → tell the user; resume later via `/klaus:execute <NN>`.
 
@@ -31,7 +31,7 @@ Entered when the reviewer passes.
 
 1. Present **both summaries verbatim** — executor summary, reviewer verdicts. No softening, no paraphrase.
 2. Ask: *"Iteration NN looks done — [reviewer verdict summary]. Phase 2: review and test it. Any changes, list them — or sign off and I'll seal REPORT.md and the next PROMPT.md."*
-3. User requests changes → SendMessage the list to the executor (its context holds the implementation), reviewer re-checks the delta, present again. Repeat as often as needed — changes here are in-scope, never churn.
+3. User requests changes → SendMessage the list to the executor (its context holds the implementation), reviewer re-checks the delta, present again. Repeat as often as needed — changes here are in-scope, never churn. A change that alters specified behavior updates its test too; a change that moots a criterion is recorded as such (don't leave a test asserting something the user just removed).
 4. This phase ends only two ways: the user **signs off** (→ phase 3), or the user **parks** via `/klaus:handoff` (corrections → CONTINUE.md, fresh session resumes at phase 1).
 
 ## Phase 3 — Sign-off (sealing)
