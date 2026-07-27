@@ -1,7 +1,7 @@
 {
   "name": "klaus",
   "description": "File-based iterative project workflow: design pass, plan pass, iteration sessions with fresh-context executors, sign-off gates, and append-only pivot logging. State lives in files, not chat.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Mika Ruch"
   }
